@@ -348,7 +348,7 @@
                           <h4 class="card-title mb-0">Crawled</h4>
                           <a href="#"><small>Show All</small></a>
                         </div>
-                        <p>Crwaled table showing pages crawled and status code</p>
+                        <p>Crawled table showing pages crawled and status code</p>
                         <div class="table-responsive">
                           <table class="table table-striped table-hover">
                             <thead>
