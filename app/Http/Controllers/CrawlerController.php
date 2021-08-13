@@ -25,7 +25,7 @@ class CrawlerController extends Controller
         $words = $crawl->countWords($html,$url);
         $crawled ++;
         }
-        
+
         if($crawled >=5){
         return redirect()->route('crawler');
         }
@@ -33,14 +33,20 @@ class CrawlerController extends Controller
 
     public function analyse(){
 
-        $crawled_pages =  DB::table('crawled')->get(); //
-        $unique_images =  DB::table('images')->select('link')->distinct()->get(); //
-        $avg_title=    DB::table('crawled')->select('title_length')->distinct()->avg('title_length'); //
-        $avg_page_load=    DB::table('crawled')->select('load_time')->distinct()->avg('load_time'); //
-        $word_count = DB::table('words')->select('count')->sum('count');
+
+        try {
+            $crawled_pages =  DB::table('crawled')->get(); //
+            $unique_images =  DB::table('images')->select('link')->distinct()->get(); //
+            $avg_title=    DB::table('crawled')->select('title_length')->distinct()->avg('title_length'); //
+            $avg_page_load=    DB::table('crawled')->select('load_time')->distinct()->avg('load_time'); //
+            $word_count = DB::table('words')->select('count')->sum('count');
+            $internal_link  =DB::table('links')->select('link')->distinct()->get(); //
+        } catch (\Illuminate\Database\QueryException $e) {
+        };
+
+
 
         //internal and external link
-        $internal_link  =DB::table('links')->select('link')->distinct()->get(); //
         foreach($internal_link as $link){
           if(substr($link->link, 0,1) == '/'){
           $internal[] = $link;
