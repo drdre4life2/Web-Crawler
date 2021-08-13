@@ -15,7 +15,6 @@ class CrawlerController extends Controller
     public  function getAnalytics()
     {
 
-
         try {
             $crawled_pages =  DB::table('crawled')->get(); //
             $crawled_count = count($crawled_pages);
