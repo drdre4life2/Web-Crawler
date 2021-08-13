@@ -15,6 +15,21 @@ class CrawlerController extends Controller
     public  function getAnalytics()
     {
 
+
+        try {
+            $crawled_pages =  DB::table('crawled')->get(); //
+            $crawled_count = count($crawled_pages);
+
+
+        } catch (\Illuminate\Database\QueryException $e) {
+        }
+
+      // Check to see if analysis hase been performed
+
+        if($crawled_count == 5){
+            return redirect()->route('crawler');
+
+        }
         $crawled = 1;
         while($crawled <=5){
         $crawl = new CrawlerService; //crawler class
