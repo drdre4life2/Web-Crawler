@@ -10,8 +10,6 @@ class CrawlerController extends Controller
 {
 
 
-
-
     public  function getAnalytics()
     {
 
@@ -74,7 +72,6 @@ class CrawlerController extends Controller
         $external_link = count($external);
         $avg_word_count = $word_count/$crawled_count;
 
-        //dd($crawled_pages);
         return view('crawler',compact('crawled_pages', 'image_count', 'avg_title', 'avg_page_load', 'avg_word_count', 'internal_link', 'external_link'));
 
 
