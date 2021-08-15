@@ -114,15 +114,23 @@ class CrawlerService
     {
 
         $xpath = new DOMXPath($html['dom']);
-        $nodes = $xpath->query('//text()');
+        $title = $html['dom']->getElementsByTagName('title');
+        $titleContent = '';
+
+        foreach ($title as $node) {
+            $titleContent .= " $node->nodeValue";
+        }
+
+        $nodes = $xpath->query('//*[not(count(.|//script|/*/*/style)=count(//script|/*/*/style))]/text()'); //text excluding syle and script
 
         $textNodeContent = '';
         foreach ($nodes as $node) {
             $textNodeContent .= " $node->nodeValue";
         }
 
-        $words_count =  array_count_values(str_word_count($textNodeContent, 1));
-        foreach ($words_count as $word => $word_count) {
+        $words =  array_count_values(str_word_count($textNodeContent, 1));
+
+        foreach ($words as $word => $word_count) {
             DB::table('words')->updateOrInsert([
                 'url' => $url,
                 'word' => $word,

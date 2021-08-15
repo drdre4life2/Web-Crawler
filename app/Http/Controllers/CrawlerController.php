@@ -32,9 +32,9 @@ class CrawlerController extends Controller
         $crawl = new CrawlerService; //crawler class
         $url  = $crawl->setUrl();
         $html = $crawl->getHtml($url);
-        $links = $crawl->getLinks($html,$url);
-        $images = $crawl->getImages($html,$url);
-        $words = $crawl->countWords($html,$url);
+        $crawl->getLinks($html,$url);
+        $crawl->getImages($html,$url);
+        $crawl->countWords($html,$url);
         $crawled ++;
         }
 
