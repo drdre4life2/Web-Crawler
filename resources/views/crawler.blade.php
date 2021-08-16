@@ -178,7 +178,7 @@
                           <div class="col-md-6">
                             <div class="d-flex align-items-center pb-2">
                               <div class="dot-indicator bg-danger mr-2"></div>
-                              <p class="mb-0">Average Page Load in minutes</p>
+                              <p class="mb-0">Average Page Load</p>
                             </div>
                             <h4 class="font-weight-semibold">{{$avg_page_load}}</h4>
                             <div class="progress progress-md">
